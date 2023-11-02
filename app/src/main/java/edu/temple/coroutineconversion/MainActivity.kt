@@ -9,6 +9,8 @@ import android.widget.ImageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,5 +38,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }.start()
         }
+    }
+
+    suspend fun messageDisplay(){
+        repeat(100 ) {
+            withContext(Dispatchers.Main){
+                handler.sendEmptyMessage(it)
+            }
+        }
+
+        delay(40)
     }
 }
